@@ -4,7 +4,8 @@ import Navbar from './Components/Navbar'
 import { Outlet } from "react-router-dom"
 import SEO from './SEO'
 import ShareToggle from './Components/ShareToggle'
-import Breadcrumb from './Components/Breadcrumb'  ;
+import Breadcrumb from './Components/Breadcrumb'
+import { Analytics } from "@vercel/analytics/react"
 
 
 export default function Layout() {
@@ -16,6 +17,7 @@ export default function Layout() {
     <Outlet/>
     <ShareToggle/>
     <Navbar/>
+    <Analytics/>
     </>
   )
 }
