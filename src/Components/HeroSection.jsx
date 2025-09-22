@@ -18,7 +18,7 @@ function HeroSection() {
           {/* Text */}
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Before they sold out
+              Before they all sold out
               <br className="hidden lg:inline-block" />
               readymade gluten
             </h1>
