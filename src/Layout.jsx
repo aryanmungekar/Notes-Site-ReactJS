@@ -6,6 +6,7 @@ import SEO from './SEO'
 import ShareToggle from './Components/ShareToggle'
 import Breadcrumb from './Components/Breadcrumb'  ;
 
+
 export default function Layout() {
   return (
     <>
