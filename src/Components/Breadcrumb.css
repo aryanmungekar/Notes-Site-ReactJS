@@ -1,0 +1,22 @@
+#breadcrumb a {
+  color: #000000;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+#breadcrumb a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+#breadcrumb span {
+  font-weight: bold;
+  color: #5e5a5a;
+}
+
+#breadcrumb {
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+    /* font-size: 14px; */
+}

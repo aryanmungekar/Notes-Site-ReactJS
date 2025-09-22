@@ -1,0 +1,21 @@
+import React from 'react'
+import CategoryContent from "../../../../CategoryContent";
+
+const A310253 = () => {
+  const folders = {
+      notes: "1X2wVZbCWwvK5vzMLSq8EQr-HrAVgBQ35",
+      pyq: "1ZiVTCnoIBR0oeAJ3qv0SdOeSgKY4fuPa",
+      solved_pyq: "",
+      uploads: "",
+    };
+  
+    return (
+      <div className="pr-0 md:pr-50 pl-0 md:pl-50">
+        <h1 className=" text-xl md:text-2xl font-bold pt-5">Artificial Intelligence</h1>
+        <CategoryContent folders={folders} />
+      </div>
+      
+    );
+}
+
+export default A310253

@@ -1,0 +1,310 @@
+
+        /* ✅ Category Buttons */
+.category-buttons {
+  display: flex;
+  gap: 0px 20px;
+  border-bottom: 1px solid #000000;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 8px 16px;
+  font-size: 14px;
+  height: auto;
+  width: auto;
+  box-shadow: none;
+  background-color: transparent;
+  border-radius: 25px;
+  /* border: none; */
+  position: sticky;
+  top: 0;
+  z-index: 10;  
+  padding-bottom: 20px;
+}
+.category-button {
+  background: rgb(255, 255, 255);
+  border: 1px solid;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 38%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 100ms;
+  box-shadow: 5px 5px rgb(0 0 0); /* custom [box-shadow] */
+}
+.category-button:hover {
+  transform: translateY(-5px);
+  transition: all 100ms;
+  box-shadow: 5px 5px rgb(0 0 0); /* custom [box-shadow] */
+}
+
+
+/* ✅ Sticky Header */
+.header-bar {
+  /* position: sticky; */
+  top: 0;
+  background: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  min-height: 60px;
+  z-index: 1000;
+}
+.header-bar .category-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  height: auto;
+  width: auto;
+  box-shadow: none;
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+
+/* ✅ Sections */
+.content-section {
+  margin: 20px;
+  display: none;
+}
+#contentArea {
+  padding-top: 20px;
+}
+
+/* ✅ PDF Grid */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 160px); 
+  /* flex-wrap: wrap; */
+  column-gap: 10px; /* ⬅️ Horizontal spacing between cards */
+  row-gap: 20px;    /* ⬅️ Vertical spacing between rows */
+  justify-content: space-evenly; /* optional: center cards */
+  margin: 30px 0;
+}
+
+.pdf-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+  padding: 10px;
+
+  width: 160px;   /* ✅ Fixed size */
+  min-height: 338px;  /* ✅ Fixed size */
+  flex: 0 0 auto; /* ✅ Prevent stretching/shrinking */
+}
+
+
+.pdf-card:hover {
+  transform: translateY(-4px);
+}
+.pdf-card img {
+  width: 100%;
+  min-height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 8px;
+  
+}
+.pdf-card h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+.pdf-card p {
+  font-size: 14px;
+  color: #666;
+}
+.pdf-card a {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 15px;
+  width: 100px;
+  position: absolute;
+  bottom: 10px;
+  right: 27px;
+  padding: 5px;
+}
+.pdf-card a:hover {
+  text-decoration: underline;
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ✅ Animations */
+.slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
+.slide-out {
+  animation: slideOut 0.3s ease-in forwards;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+
+.pdf-card {
+  position: relative; /* Make card the positioning context */
+  padding-bottom: 50px; /* Give space at bottom for share buttons */
+}
+
+.share-group {
+  position: absolute;
+  right: 0px;
+  bottom: 234px;
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.share-group a,
+.share-group button {
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.share-group a:hover,
+.share-group button:hover {
+  background-color: #e0e0e0;
+}
+
+/* ✅ Skeleton styles updated to match PDF card */
+.skeleton-card {
+  background: #f5f5f5;           /* light background like card */
+  border-radius: 12px;            /* match pdf-card border radius */
+  width: 160px;                    /* same width as pdf-card */
+  height: 338px;                   /* same height as pdf-card */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+  position: relative;              /* for share group space */
+  overflow: hidden;
+  animation: pulse 1.5s infinite;
+}
+
+/* Thumbnail placeholder */
+.skeleton-thumbnail {
+  width: 100%;
+  height: 150px;                   /* approximate image height */
+  background: #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Title placeholder */
+.skeleton-line {
+  height: 16px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+/* Subtitle / exam placeholder */
+.skeleton-line.short {
+  width: 60%;
+}
+
+/* Share button placeholder at bottom */
+.skeleton-share {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ddd;
+  position: absolute;
+  bottom: 10px;
+  right: 25px;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { background-color: #eee; }
+  50% { background-color: #ddd; }
+  100% { background-color: #eee; }
+}
+
+@media (max-width: 768px) {
+  .category-button {
+    width: 70px;
+    /* height: 60px; */
+    font-size: 13px;
+    padding: 0px 20px;
+  }
+
+  .category-buttons {
+  gap: 0px 10px;
+  }
+
+  .pdf-grid {
+    column-gap: 0px;
+    margin-bottom: 100px;
+    
+}
+}
+
+.category-button.active {
+  background-color: #000000; /* Active background */
+  color: #ffffff; /* Active text color */
+  border: 1ps solid #ffffff;
+  /* transform: translateY(-5px); */
+  transform: translateX(3px) translateY(3px);
+  box-shadow: 0px 0px rgb(82 82 82);
+  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); */
+}
+
+
+
+/* Hover effect for image */
+.pdf-card:hover img {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+

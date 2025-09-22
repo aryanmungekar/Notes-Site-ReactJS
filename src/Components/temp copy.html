@@ -1,0 +1,368 @@
+<html>
+<head>
+    <title>Temp</title>
+
+    <style>
+        /* ✅ Category Buttons */
+.category-buttons {
+  display: flex;
+  gap: 23px 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+.category-button {
+  background: #d6d6d6ff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 38%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 190px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.category-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .category-button {
+    width: 130px;
+    height: 90px;
+  }
+}
+
+/* ✅ Sticky Header */
+.header-bar {
+  /* position: sticky; */
+  top: 0;
+  background: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  min-height: 60px;
+  z-index: 1000;
+}
+.header-bar .category-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  height: auto;
+  width: auto;
+  box-shadow: none;
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: 1px solid black;
+}
+
+/* ✅ Sections */
+.content-section {
+  margin: 20px;
+  display: none;
+}
+#contentArea {
+  padding-top: 20px;
+}
+
+/* ✅ PDF Grid */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 140px); 
+  /* flex-wrap: wrap; */
+  column-gap: 30px; /* ⬅️ Horizontal spacing between cards */
+  row-gap: 20px;    /* ⬅️ Vertical spacing between rows */
+  justify-content: space-evenly; /* optional: center cards */
+  margin: 30px 0;
+}
+
+.pdf-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+  padding: 10px;
+
+  width: 140px;   /* ✅ Fixed size */
+  height: 279px;  /* ✅ Fixed size */
+  flex: 0 0 auto; /* ✅ Prevent stretching/shrinking */
+}
+
+
+.pdf-card:hover {
+  transform: translateY(-4px);
+}
+.pdf-card img {
+  width: 100%;
+  /* height: 150px; */
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.pdf-card h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+.pdf-card p {
+  font-size: 14px;
+  color: #666;
+}
+.pdf-card a {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 15px;
+  width: 90px;
+  position: absolute;
+  bottom: 10px;
+  right: 25px;
+}
+.pdf-card a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Animations */
+.slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
+.slide-out {
+  animation: slideOut 0.3s ease-in forwards;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+
+.pdf-card {
+  position: relative; /* Make card the positioning context */
+  padding-bottom: 50px; /* Give space at bottom for share buttons */
+}
+
+.share-group {
+  position: absolute;
+  right: 0px;
+  bottom: 234px;
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.share-group a,
+.share-group button {
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 14px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.share-group a:hover,
+.share-group button:hover {
+  background-color: #e0e0e0;
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+    <!-- ✅ Category Buttons -->
+<div class="category-buttons" id="initialButtons"></div>
+<div class="header-bar" id="headerBar"></div>
+
+<!-- ✅ Content Sections -->
+<div id="contentArea">
+  <div id="pyq" class="content-section"><h3>📄 PYQ</h3><div class="pdf-grid" id="pyqGrid"></div></div>
+  <div id="solved_pyq" class="content-section"><h3>✅ Solved PYQ</h3><div class="pdf-grid" id="solved_pyqGrid"></div></div>
+  <div id="notes" class="content-section"><h3>📝 Notes</h3><div class="pdf-grid" id="notesGrid"></div></div>
+  <div id="uploads" class="content-section"><h3>📤 Uploads</h3><div class="pdf-grid" id="uploadsGrid"></div></div>
+</div>
+
+<script>
+// ✅ Categories (labels stay same)
+const categories = {
+    notes: "📝 Notes",
+    pyq: "📄 PYQ",
+    uploads: "📤 Micro",
+    solved_pyq: "✅ Solved PYQ"
+};
+
+// ✅ Google Drive API key
+const API_KEY = "AIzaSyDVeYvprRkUxU9gwY6934UhPxbPUbmN1DU";
+
+// ✅ Folder IDs for each category (replace with your real Drive folder IDs)
+const FOLDER_IDS = {
+    notes: "1dqxp2FGU4wX7MOvZld8dNjwtvJcw58or",       // Notes folder
+    pyq: "FOLDER_ID_2",         // PYQ folder
+    uploads: "FOLDER_ID_3",     // Micro folder
+    solved_pyq: "FOLDER_ID_4"   // Solved PYQ folder
+};
+
+// ✅ Fetch files from a Google Drive folder
+async function fetchDriveFiles(folderId) {
+    const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${API_KEY}&fields=files(id,name,thumbnailLink,mimeType)`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.files) return [];
+
+    return data.files.map(file => {
+        let [title, subtitle, exam] = file.name.replace(".pdf", "").split("|").map(s => s.trim());
+
+        return {
+            title: title || "",
+            subtitle: subtitle || "",
+            exam: exam || "",
+            thumbnail: file.thumbnailLink || "",
+            url: `https://drive.google.com/file/d/${file.id}/view`
+        };
+    });
+}
+
+const headerBar = document.getElementById("headerBar");
+
+// ✅ Create category buttons
+headerBar.style.display = "flex";
+for (const key in categories) {
+    createButton(key, categories[key], headerBar, () =>
+        showCategoryContent(key)
+    );
+}
+
+// ✅ Load default category
+showCategoryContent("notes");
+
+function createButton(id, label, parent, handler) {
+    const btn = document.createElement("button");
+    btn.textContent = label;
+    btn.className = "category-button";
+    btn.onclick = handler;
+    parent.appendChild(btn);
+}
+
+async function showCategoryContent(category) {
+    document.querySelectorAll(".content-section").forEach(div => {
+        div.style.display = "none";
+        div.classList.remove("slide-in");
+    });
+
+    const section = document.getElementById(category);
+    if (!section) return;
+
+    section.style.display = "block";
+    section.classList.add("slide-in");
+
+    await loadPDFs(category);
+}
+
+async function loadPDFs(category) {
+    const grid = document.getElementById(category + 'Grid');
+    if (!grid) return;
+
+    grid.innerHTML = "<p>Loading...</p>";
+
+    const folderId = FOLDER_IDS[category];
+    if (!folderId) {
+        grid.innerHTML = `<p>No folder ID for ${categories[category]}.</p>`;
+        return;
+    }
+
+    const items = await fetchDriveFiles(folderId);
+
+    if (items.length === 0) {
+        grid.innerHTML = `<p>No PDFs available in ${categories[category]}.</p>`;
+        return;
+    }
+
+    grid.innerHTML = "";
+    items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'pdf-card';
+
+        const shareLink = `/temp/text4.html?file=${encodeURIComponent(item.url)}&title=${encodeURIComponent(item.title)}&subject=${encodeURIComponent(categories[category])}`;
+
+        card.innerHTML = `
+          <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+          <h4>${item.title}</h4>
+          ${item.subtitle ? `<p>${item.subtitle}</p>` : ""}
+          ${item.exam ? `<p>${item.exam}</p>` : ""}
+          <a href="${shareLink}" target="_blank">Open PDF</a>
+          <div class="share-group">
+            <button class="share-btn" data-url="${shareLink}" title="Share Link">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            </button>
+          </div>
+        `;
+
+        grid.appendChild(card);
+    });
+
+    // ✅ Add share functionality
+    grid.querySelectorAll(".share-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const shareUrl = window.location.origin + btn.getAttribute("data-url");
+
+            if (navigator.share) {
+                navigator.share({
+                    title: "Check this PDF on SPPU Notes",
+                    text: "Useful note/PYQ from SPPU Notes:",
+                    url: shareUrl
+                }).catch(err => console.error("Sharing failed:", err));
+            } else {
+                navigator.clipboard.writeText(shareUrl)
+                    .then(() => alert("Link copied to clipboard!"))
+                    .catch(() => alert("Failed to copy link"));
+            }
+        });
+    });
+}
+</script>
+
+
+
+</body>
+</html>

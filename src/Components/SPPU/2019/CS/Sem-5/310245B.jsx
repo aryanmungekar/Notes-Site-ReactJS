@@ -1,0 +1,21 @@
+// 310245B.jsx
+import React from 'react'
+import CategoryContent from "../../../../CategoryContent";
+
+const B310245B = () => {
+  const folders = {
+    notes: "1HNMackLL26Vd7BXbmfZG7GbJaj7oxIL4",
+    pyq: "1rQUeZK3vuXhZ0ZP_19Gtyo-GDfRTnHoE",
+    solved_pyq: "",
+    uploads: "",
+  };
+
+  return (
+    <div className="pr-0 md:pr-50 pl-0 md:pl-50">
+      <h1 className=" text-xl md:text-2xl font-bold pt-5">Elective I - Human Computer Interface</h1>
+      <CategoryContent folders={folders} />
+    </div>
+  );
+}
+
+export default B310245B;
