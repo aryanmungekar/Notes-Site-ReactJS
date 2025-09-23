@@ -4,7 +4,7 @@ import CategoryContent from "../../../CategoryContent";
 const GRA24 = () => {
   const folders = {
     notes: "",
-    pyq: "",
+    pyq: "1tnVONXFW77Ws2NESLWhxRSHgLocjdWwa",
     solved_pyq: "",
     uploads: "",
   };

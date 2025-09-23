@@ -4,7 +4,7 @@ import CategoryContent from "../../../CategoryContent";
 const PHY24 = () => {
   const folders = {
     notes: "",
-    pyq: "",
+    pyq: "1fduEzrUlOjToAq-N0nUO9IgfLwUb_-OG",
     solved_pyq: "",
     uploads: "",
   };

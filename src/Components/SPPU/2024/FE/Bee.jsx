@@ -4,7 +4,7 @@ import CategoryContent from "../../../CategoryContent";
 const BEE24 = () => {
   const folders = {
     notes: "",
-    pyq: "",
+    pyq: "1PXJMPGTUX-UIPSwFiAtXKuoPFSnQWXE6",
     solved_pyq: "",
     uploads: "",
   };

@@ -4,7 +4,7 @@ import CategoryContent from "../../../CategoryContent";
 const MEC24 = () => {
   const folders = {
     notes: "",
-    pyq: "",
+    pyq: "1NVINhxwdpwhdh-WQ0OgO3NjPHu_--_x6",
     solved_pyq: "",
     uploads: "",
   };

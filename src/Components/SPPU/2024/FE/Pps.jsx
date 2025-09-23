@@ -4,7 +4,7 @@ import CategoryContent from "../../../CategoryContent";
 const PPS24 = () => {
   const folders = {
     notes: "",
-    pyq: "",
+    pyq: "1a3BRs7TPqcrYfdWV6fgyYCbSmiO3wI6I",
     solved_pyq: "",
     uploads: "",
   };
