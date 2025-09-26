@@ -27,7 +27,7 @@ const CategoryContent = ({ folders }) => {
 
     return data.files.map((file) => {
       let [title, subtitle, exam] = file.name
-        .replace(".pdf", "")
+        .replace(/\.docx$|\.pdf$/i, "")
         .split("|")
         .map((s) => s.trim());
 
