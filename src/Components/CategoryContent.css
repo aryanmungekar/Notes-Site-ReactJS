@@ -111,14 +111,15 @@
   transform: translateY(-4px);
 }
 .pdf-card img {
-  width: 100%;
-  min-height: 200px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  border: 1px solid;
-  border-radius: 8px;
-  
-}
+    width: 100%;
+    min-height: 187px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    /* border: 1px solid; */
+    border-radius: 8px;
+    box-shadow: 4px 5px 12px 0px #00000085;
+    margin-top: 10px;
+  }
 .pdf-card h4 {
   margin: 0;
   font-size: 16px;
@@ -305,6 +306,8 @@
 /* Hover effect for image */
 .pdf-card:hover img {
   transform: scale(1.05); /* Slight zoom on hover */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  /* box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+   */
+   box-shadow: 4px 5px 12px 0px #00000059
 }
 
