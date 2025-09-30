@@ -166,7 +166,7 @@ nav a:hover {
   transition: all 0.3s ease;
   border-radius: 15px;
   background: white;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding-top: 12px;
   border-bottom: none;
   border-bottom-right-radius: 0px;
