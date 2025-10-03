@@ -161,6 +161,8 @@ import GRA24 from "./Components/SPPU/2024/FE/Gra";
 import MEC24 from "./Components/SPPU/2024/FE/Mec";
 import PPS24 from "./Components/SPPU/2024/FE/Pps";
 
+import PdfViewer from "./Components/pdfViewer";
+
 
 
 
@@ -191,6 +193,8 @@ export const routes = [
       { path: "search", element: <Search />},
       { path: "*", element: <NotFound />},
       {path: "/coming-soon", element: <ComingSoon />},
+      {path: "/pdf", element: <PdfViewer />},
+
 
       // SPPU 2019 Pattern Branches
 

@@ -43,7 +43,7 @@ const Search = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-center text-2xl font-bold mb-4">🔍 Search Notes</h1>
+      <h1 className="text-center text-2xl font-bold mb-4">🔍 Search Notes <span className="text-red-600 italic underline text-xl">(Not in working state yet)</span></h1>
 
       <input
         type="text"
