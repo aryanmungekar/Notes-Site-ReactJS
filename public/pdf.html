@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>PDF Viewer</title>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <!-- Manifest & Theme -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/share-button.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Georgia", serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+
+    .header-container {
+      padding: 10px 5px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 5;
+    }
+
+    .header-container h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #2c3e50;
+    }
+
+    .iframe-wrapper {
+      flex: 0.92;
+      position: relative;
+    }
+
+    .loader {
+      position: absolute;
+      inset: 0;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner {
+      border: 6px solid #ccc;
+      border-top: 6px solid #2c3e50;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    #control-bar {
+      background: #fff;
+      border-top: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50px;
+      padding: 0 10px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 5;
+    }
+
+    .footer-left {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .footer-marquee {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: slide-left 27s linear infinite;
+    }
+
+    @keyframes slide-left {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .floating-share {
+      position: fixed;
+      bottom: 66px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .share-toggle {
+      background: #fff;
+      color: #000;
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease;
+    }
+
+    .share-toggle:active {
+      transform: scale(0.9);
+    }
+
+    .floating-share-menu {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .floating-share-menu.show {
+      display: flex;
+    }
+
+    .floating-share-menu a,
+    .floating-share-menu button {
+      background-color: #f1f1f1;
+      border: none;
+      text-decoration: none;
+      color: #333;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .floating-share-menu a:hover,
+    .floating-share-menu button:hover {
+      background-color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      .floating-share {
+        bottom: 70px;
+        right: 10px;
+      }
+      #control-bar {
+        padding-bottom: 10px;
+      }
+    }
+  </style>
+
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header-container">
+    <h1 id="page-title">PDF Viewer</h1>
+  </div>
+
+  <!-- Adobe PDF Viewer -->
+  <div class="iframe-wrapper">
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+    </div>
+    <div id="adobe-dc-view" style="width: 100%; height: 100%"></div>
+  </div>
+
+  <!-- Footer -->
+  <div id="control-bar">
+    <div class="footer-left">PUNE UNIVERSITY</div>
+    <div class="footer-marquee">
+      <div class="marquee-text">
+        Insem Notes and PYQ Papers are updated for semester 5 and 7 of all
+        branches. Please leave comments in community sections. Thank you!
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating share -->
+  <div class="floating-share">
+    <button class="share-toggle" onclick="toggleShareMenu()">
+      <i class="fa-solid fa-share"></i>
+    </button>
+    <div class="floating-share-menu" id="shareMenu">
+      <a target="_blank" href="#" id="share-whatsapp"><i class="fab fa-whatsapp"></i></a>
+      <a target="_blank" href="#" id="share-telegram"><i class="fab fa-telegram"></i></a>
+      <a target="_blank" href="#" id="share-facebook"><i class="fab fa-facebook-f"></i></a>
+      <a target="_blank" href="#" id="share-twitter"><i class="fab fa-twitter"></i></a>
+      <button onclick="copyLink()" title="Copy"><i class="fas fa-link"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Share toggle
+    function toggleShareMenu() {
+      document.getElementById("shareMenu").classList.toggle("show");
+    }
+
+    document.addEventListener("click", (e) => {
+      const menu = document.getElementById("shareMenu");
+      const toggle = document.querySelector(".share-toggle");
+      if (!menu.contains(e.target) && !toggle.contains(e.target))
+        menu.classList.remove("show");
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileId = urlParams.get("file");
+    const title = urlParams.get("title");
+    const subject = urlParams.get("subject");
+    const pageTitle = document.getElementById("page-title");
+    const loader = document.getElementById("loader");
+
+    // Set page title
+    let finalTitle = title ? decodeURIComponent(title) : "PDF Viewer";
+    if (subject) finalTitle += ` – ${decodeURIComponent(subject)}`;
+    pageTitle.innerText = finalTitle;
+    document.title = finalTitle;
+
+    // Adobe PDF Embed initialization
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+      if (!fileId) {
+        pageTitle.innerText = "❌ Error: No PDF file specified.";
+        loader.style.display = "none";
+        return;
+      }
+
+      const pdfUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+      const adobeDCView = new AdobeDC.View({
+        clientId: "YOUR_ADOBE_CLIENT_ID_HERE", // 👈 Replace with real key
+        divId: "adobe-dc-view",
+      });
+
+      adobeDCView.previewFile(
+        {
+          content: { location: { url: pdfUrl } },
+          metaData: { fileName: decodeURIComponent(title) || "Document.pdf" },
+        },
+        {
+          embedMode: "FULL_WINDOW",
+          showDownloadPDF: false,
+          showPrintPDF: false,
+        }
+      );
+
+      setTimeout(() => loader.classList.add("hidden"), 1500);
+      setTimeout(() => (loader.style.display = "none"), 2000);
+    });
+  </script>
+</body>
+</html>
