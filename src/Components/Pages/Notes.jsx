@@ -22,10 +22,7 @@ function Notes() {
                         style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
                         className="button-card"
                     >
-                        <i
-                            style={{ fontSize: 40, color: "black" }}
-                            className="fa-solid fa-atom"
-                        />
+                       <img src={btnaids} className="w-20" alt="AI&DS" />
                         <h4>Artificial Intelligence &amp; Data Science</h4>
                     </div>
                 </Link>
@@ -38,10 +35,7 @@ function Notes() {
                         style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
                         className="button-card"
                     >
-                        <i
-                            style={{ fontSize: 40, color: "black" }}
-                            className="fa-solid fa-chalkboard"
-                        />
+                        <img src={btnit} className="w-20" alt="CS"/>
                         <h4>Computer Science</h4>
                     </div>
                 </Link>
@@ -53,10 +47,7 @@ function Notes() {
                         style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
                         className="button-card"
                     >
-                        <i
-                            style={{ fontSize: 40, color: "black" }}
-                            className="fa-solid fa-bolt"
-                        />
+                        <img src={btnaiml} className="w-20" alt="IT"/>
                         <h4>Information Technology</h4>
                     </div>
                 </Link>
@@ -68,10 +59,7 @@ function Notes() {
                         style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
                         className="button-card"
                     >
-                        <i
-                            style={{ fontSize: 40, color: "black" }}
-                            className="fa-solid fa-hexagon-nodes"
-                        />
+                        <img src={btn} className="w-20" alt="AI&ML"/>
                         <h4>AI &amp; ML</h4>
                     </div>
                 </Link>
