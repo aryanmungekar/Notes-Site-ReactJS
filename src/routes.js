@@ -162,6 +162,7 @@ import MEC24 from "./Components/SPPU/2024/FE/Mec";
 import PPS24 from "./Components/SPPU/2024/FE/Pps";
 
 import PdfViewer from "./Components/pdfViewer";
+import Downloads from "./Components/Pages/Downloads";
 
 
 
@@ -193,6 +194,8 @@ export const routes = [
       { path: "search", element: <Search />},
       { path: "*", element: <NotFound />},
       {path: "/coming-soon", element: <ComingSoon />},
+      {path: "/download", element: <Downloads />},
+
       {path: "/pdf", element: <PdfViewer />},
 
 
