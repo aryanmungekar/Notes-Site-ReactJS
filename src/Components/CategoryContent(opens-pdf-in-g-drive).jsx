@@ -72,12 +72,6 @@ const CategoryContent = ({ folders }) => {
     }
   };
 
-  // Helper function to extract Google Drive file ID
-  const getFileIdFromUrl = (url) => {
-    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    return match ? match[1] : null;
-  };
-
   return (
     <div>
       {/* Category Buttons */}
@@ -112,39 +106,40 @@ const CategoryContent = ({ folders }) => {
         {!loading[activeCategory] &&
           items[activeCategory] &&
           items[activeCategory].map((item, idx) => {
-            const fileId = getFileIdFromUrl(item.url);
-            const pdfLink = `/pdf.html?file=${fileId}&title=${encodeURIComponent(
-              item.title
-            )}&subject=${encodeURIComponent(categories[activeCategory])}`;
+            const shareLink = `/temp/text4.html?file=${encodeURIComponent(
+              item.url
+            )}&title=${encodeURIComponent(item.title)}&subject=${encodeURIComponent(
+              categories[activeCategory]
+            )}`;
 
             return (
-              <div key={idx} className="pdf-card">
-                <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  loading="lazy"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => window.open(pdfLink, "_blank")}
-                />
+              <a  target="_blank" rel="noreferrer">
+                <div key={idx} className="pdf-card">
+                <img src={item.thumbnail} alt={item.title} loading="lazy" style={{ cursor: "pointer" }} onClick={() => window.open(item.url, "_blank")} />
                 <h4>{item.title}</h4>
                 {item.subtitle && <p>{item.subtitle}</p>}
                 {item.exam && <p>{item.exam}</p>}
-                <a href={pdfLink} target="_blank" rel="noreferrer">
-                  <i className="fa-solid fa-file-pdf"></i> Open PDF
+                {/* <a href={shareLink} target="_blank" rel="noreferrer"> */}
+                <a href={item.url} target="_blank" rel="noreferrer">
+                 <i class="fa-solid fa-file-pdf"></i> Open PDF
                 </a>
                 <div className="share-group">
                   <ShareButton
-                    fileUrl={pdfLink} // updated to share the pdf.html link
+                    fileUrl={item.url}
                     title={item.title}
                     subject={categories[activeCategory]}
                   />
                 </div>
+
               </div>
+              </a>
             );
           })}
       </div>
     </div>
   );
 };
+
+
 
 export default CategoryContent;
