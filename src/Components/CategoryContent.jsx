@@ -113,9 +113,9 @@ const CategoryContent = ({ folders }) => {
           items[activeCategory] &&
           items[activeCategory].map((item, idx) => {
             const fileId = getFileIdFromUrl(item.url);
-            const pdfLink = `/pdf.html?file=${fileId}&title=${encodeURIComponent(
+            const pdfLink = `/pdf.html?title=${encodeURIComponent(
               item.title
-            )}&subject=${encodeURIComponent(categories[activeCategory])}`;
+            )}&subject=${encodeURIComponent(categories[activeCategory])}&file=${fileId}`;
 
             return (
               <div key={idx} className="pdf-card">
