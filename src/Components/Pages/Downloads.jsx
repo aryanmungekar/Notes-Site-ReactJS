@@ -46,19 +46,21 @@ const Downloads = () => {
 
   return (
     <div className="download-container">
-      <div className=" flex justify-center">
+      <div className=" flex justify-center ">
         <img className="h-50 md:h-70 align-center" src={download} />
       </div>
       
       <br />
 
+      
+      <div>
       {/* Show install button only if prompt is available */}
       {showInstallBtn && platform !== "ios" && (
         <button id="installBtn" onClick={handleInstallClick}>
           Install App
         </button>
       )}
-                      
+
       {/* Android Guide */}
       {platform === "android" && (
         <div className="guide">
@@ -108,6 +110,9 @@ const Downloads = () => {
           <div className="step">3. Click it and choose <b>Install</b>.</div>
         </div>
       )}
+        
+      </div>                
+      
 
       <style jsx>{`
         .download-container {
@@ -116,6 +121,9 @@ const Downloads = () => {
           text-align: center;
           padding: 40px 20px;
           padding-bottom: 90px;
+          display: flex;
+          gap: 20px;
+          align-items: center;
         }
         #installBtn {
           display: inline-block;
@@ -148,6 +156,13 @@ const Downloads = () => {
           margin-bottom: 10px;
           border-left: 5px solid #007bff;
           border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+        .download-container {
+          display: flex;
+          flex-direction: column;
+          gap: 0px;
+        }
         }
       `}</style>
     </div>
