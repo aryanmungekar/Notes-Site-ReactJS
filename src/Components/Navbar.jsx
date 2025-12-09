@@ -19,17 +19,17 @@ function Navbar() {
                     <span>Search</span>
                 </NavLink>
                 
-                <NavLink to="/events/" className="footer-item">
+                {/* <NavLink to="/events/" className="footer-item">
                     <i className="fa-solid fa-calendar-days" />
                     <span>Events</span>
                     <span className="new-label">NEW</span>
-                </NavLink>
+                </NavLink> */}
 
-                <NavLink to="/internship" className="footer-item">
+                {/* <NavLink to="/internship" className="footer-item">
                     <i className="fa-regular fa-paper-plane" />
                     <span>Internship</span>
                     <span className="new-label">NEW</span>
-                </NavLink>
+                </NavLink> */}
 
                 <NavLink to="/download" className="footer-item">
                     <i className="fas fa-download" />
