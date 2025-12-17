@@ -4,7 +4,7 @@ import CategoryContent from "../../../../CategoryContent";
 const A417523a = () => {
   const folders = {
     notes: "1fFJb7930F5TDiM2bkNX0kF9xtqHcuv1g",
-    pyq: "",
+    pyq: "10feT7mNpu6HO-RmI8WOAqglmBbDoKp_y",
     solved_pyq: "",
     uploads: "",
   };
